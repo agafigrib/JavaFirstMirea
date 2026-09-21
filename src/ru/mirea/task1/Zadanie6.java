@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class Zadanie6 {
     public static void main(String[] args) {
-    System.out.print("Введите любое адекватное значение: ");
-    Scanner s = new Scanner(System.in);
         System.out.print("Гармонический ряд: ");
     int i = 0;
     float result = 0;

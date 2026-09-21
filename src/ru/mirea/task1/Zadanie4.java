@@ -1,5 +1,5 @@
 package ru.mirea.task1;
-v
+import java.util.Scanner;
 import java.util.Arrays;
 
 public class Zadanie4 {
