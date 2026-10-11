@@ -41,7 +41,7 @@ interface StringWorker {
             StringWorker worker = new ProcessStrings();
             String text = "Программирование";
 
-            System.out.println("Исходная строка: " + text);
+            System.out.println("Исходная строка:  " + text);
             System.out.println("а) Количество символов: " + worker.countChars(text));
             System.out.println("б) Символы на нечётных позициях: " + worker.oddChars(text));
             System.out.println("в) Перевёрнутая строка: " + worker.reverse(text));

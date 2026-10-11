@@ -2,7 +2,7 @@ package ru.mirea.task7;
 
 // Интерфейс
 interface MathCalculable {
-    double PI = 3.14159265358979; // в интерфейсе поля — это константы
+    double PI = 3.14159265358979;
 
     double power(double x, int n);   // возведение в степень
     double absComplex(double re, double im); // модуль комплексного числа
@@ -32,13 +32,13 @@ class MathFunc implements MathCalculable {
 // Проверка
 public class zadanie4 {
     public static void main(String[] args) {
-        // Правильно: через интерфейсную ссылку
+
         MathCalculable mc = new MathFunc();
 
         System.out.println("2^10 = " + mc.power(2, 10));
         System.out.println("|3 + 4i| = " + mc.absComplex(3, 4));
 
-        // Для длины окружности используем сам класс
+
         MathFunc mf = new MathFunc();
         System.out.println("Длина окружности r=5: " + mf.circleLength(5));
     }
