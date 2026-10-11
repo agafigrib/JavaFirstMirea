@@ -27,7 +27,7 @@ public class zadanie11 {
         Convertable toKelvin = new CelsiusToKelvin();
         Convertable toFahrenheit = new CelsiusToFahrenheit();
 
-        System.out.println("Температура по Цельсию:  " + celsius + "°C");
+        System.out.println("Температура по Цельсию: " + celsius + "°C");
         System.out.println("По Кельвину: " + toKelvin.convert(celsius) + " K");
         System.out.println("По Фаренгейту: " + toFahrenheit.convert(celsius) + " °F");
     }
