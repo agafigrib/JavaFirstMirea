@@ -1,31 +1,21 @@
 package ru.mirea.task2.zadanie3;
 
-public class Circle  {
+public class Circle {
 
-    private double x;
-    private double y;
+    private Point center;    // центр окружности - объект класса Point
     private double radius;
 
-    public Circle(double x, double y, double radius) {
-        this.x = x;
-        this.y = y;
+    public Circle(Point center, double radius) {
+        this.center = center;
         this.radius = radius;
     }
 
-    public double getX() {
-        return x;
+    public Point getCenter() {
+        return center;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
+    public void setCenter(Point center) {
+        this.center = center;
     }
 
     public double getRadius() {
@@ -45,20 +35,12 @@ public class Circle  {
     }
 
     public boolean isEqual(Circle other) {
-
-        return other != null &&
-                Double.compare(
-                        radius,
-                        other.radius
-                ) == 0;
+        return other != null && Double.compare(radius, other.radius) == 0;
     }
 
     @Override
     public String toString() {
-        return "Circle[x=" + x +
-                ", y=" + y +
-                ", radius=" + radius +
-                "]";
+        return "Circle[центр=(" + center.getX() + ", " + center.getY() +
+                "), radius=" + radius + "]";
     }
 }
-

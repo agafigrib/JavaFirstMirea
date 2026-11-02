@@ -1,0 +1,116 @@
+package ru.mirea.task15;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.io.FileWriter;
+import javax.swing.*;
+
+// Задание 3. Окно с меню (File, Edit, Help), двумя кнопками и текстовым полем.
+// Используемые классы: GridLayout, JButton, JFrame, JMenu, JMenuBar,
+// JMenuItem, JPanel, JTextArea
+class MenuExample extends JFrame {
+    JTextArea area = new JTextArea("This is the area you can write text.", 10, 30);
+    JButton button1 = new JButton("Button 1");
+    JButton button2 = new JButton("Button 2");
+
+    MenuExample() {
+        super("Hello Swing");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // ---------- МЕНЮ ----------
+        JMenuBar menuBar = new JMenuBar();   // полоска меню
+
+        JMenu fileMenu = new JMenu("File");  // меню "Файл"
+        JMenuItem saveItem = new JMenuItem("Save");
+        JMenuItem exitItem = new JMenuItem("Exit");
+        fileMenu.add(saveItem);
+        fileMenu.add(exitItem);
+
+        JMenu editMenu = new JMenu("Edit");  // меню "Правка"
+        JMenuItem copyItem = new JMenuItem("Copy");
+        JMenuItem cutItem = new JMenuItem("Cut");
+        JMenuItem pasteItem = new JMenuItem("Paste");
+        editMenu.add(copyItem);
+        editMenu.add(cutItem);
+        editMenu.add(pasteItem);
+
+        JMenu helpMenu = new JMenu("Help");  // меню "Справка"
+        JMenuItem aboutItem = new JMenuItem("About");
+        helpMenu.add(aboutItem);
+
+        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
+        menuBar.add(helpMenu);
+        setJMenuBar(menuBar);                // ставим меню в окно
+
+        // ---------- КНОПКИ ----------
+        // панель с кнопками: 1 строка, 2 столбца (GridLayout)
+        JPanel buttons = new JPanel(new GridLayout(1, 2, 10, 0));
+        buttons.add(button1);
+        buttons.add(button2);
+        add(buttons, BorderLayout.NORTH);
+
+        // ---------- ТЕКСТОВОЕ ПОЛЕ (с прокруткой) ----------
+        add(new JScrollPane(area), BorderLayout.CENTER);
+
+        // ---------- ОБРАБОТЧИКИ (анонимные классы) ----------
+        // JMenuItem - наследник AbstractButton, поэтому ActionListener как у кнопки
+        saveItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    FileWriter writer = new FileWriter("text.txt");
+                    writer.write(area.getText());
+                    writer.close();
+                    JOptionPane.showMessageDialog(null, "Текст сохранён в файл text.txt");
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Ошибка сохранения",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        exitItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        copyItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                area.copy();  // копирует выделенный текст в буфер обмена
+            }
+        });
+        cutItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                area.cut();   // вырезает выделенный текст
+            }
+        });
+        pasteItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                area.paste(); // вставляет текст из буфера обмена
+            }
+        });
+        aboutItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,
+                        "Практическая работа №15\nПример программы с меню");
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                area.append("\nНажата Button 1");
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                area.setText("");  // очищаем поле
+            }
+        });
+
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new MenuExample();
+    }
+}
