@@ -4,23 +4,32 @@ import java.util.Arrays;
 
 public class Zadanie4 {
     public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Введите длину массива: ");
-    int length = sc.nextInt();
-    int[] array = new int[length];
-    int summ = 0;
-    int i = 0;
-    int min = 2147483647; // максимально возможное int значение -> скорее всего вы введете значение поменьше ;)
-    int max = 0;
+        int length = sc.nextInt();
+        int[] array = new int[length];
+
         System.out.println("Введите ЦЕЛОЧИСЛЕННЫЕ элементы массива:");
-            do {
-        array[i] = sc.nextInt();
-        summ += array[i];
-        if (min > array[i]) min = array[i];
-        if (max < array[i]) max = array[i];
-        i++;
+        // ввод и сумма - цикл do while
+        int summ = 0;
+        int i = 0;
+        do {
+            array[i] = sc.nextInt();
+            summ += array[i];
+            i++;
+        } while (i < length);
+
+        // поиск min и max - цикл while
+        // начинаем с первого элемента, а не с 0, иначе ошибка на отрицательных числах
+        int min = array[0];
+        int max = array[0];
+        int j = 1;
+        while (j < length) {
+            if (array[j] < min) min = array[j];
+            if (array[j] > max) max = array[j];
+            j++;
         }
-            while (i < length);
+
         System.out.println("Массив: " + Arrays.toString(array));
         System.out.println("Сумма: " + summ);
         System.out.println("Минимальное значение: " + min);

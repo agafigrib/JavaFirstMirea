@@ -2,30 +2,45 @@ package ru.mirea.task2.zadanie4;
 import java.util.ArrayList;
 
 public class Shop {
-    public static ArrayList Computers(ArrayList PC){
-        int SizeP = PC.size();
-        for (int i = 0; i < SizeP; i++){
-            System.out.println(PC.get(i));
+    // показать все компьютеры
+    public static void Computers(ArrayList<String> PC) {
+        if (PC.isEmpty()) {
+            System.out.println("В магазине нет компьютеров");
+            return;
         }
-        return null;
+        for (int i = 0; i < PC.size(); i++) {
+            System.out.println(i + ": " + PC.get(i));
+        }
     }
-    public static ArrayList ComputerAdd(ArrayList PC, String computer){ //Добавить в список Компьютер
-        PC.add(computer); //Добавить в список
-        return PC; //Вернуть список
+
+    public static ArrayList<String> ComputerAdd(ArrayList<String> PC, String computer) {
+        PC.add(computer);
+        return PC;
     }
-    public static ArrayList ComputerDelete(ArrayList PC, String computer){ //Удалить из списка Компьютер
-        PC.remove(computer); //Удалить из списка
-        return PC; //Вернуть список
+
+    public static ArrayList<String> ComputerDelete(ArrayList<String> PC, String computer) {
+        PC.remove(computer);
+        return PC;
     }
-    public static String ComputerSearchName(ArrayList PC, String Search){ //Искать в списке Компьютер по его названию
-        int Index = PC.indexOf(Search); //Получение индекса списка искаемого значения
-        String result = (String) PC.get(Index); //Значение списка от индекса
-        System.out.println(result); //Отображение выбранного Компьютера
-        return result; //Возвращение искаемого Компьютера
+
+    // поиск по названию: если не нашли, indexOf вернёт -1
+    public static String ComputerSearchName(ArrayList<String> PC, String search) {
+        int index = PC.indexOf(search);
+        if (index == -1) {
+            System.out.println("Компьютер \"" + search + "\" не найден");
+            return null;
+        }
+        System.out.println("Найден под номером " + index + ": " + PC.get(index));
+        return PC.get(index);
     }
-    public static String ComputerSearchIndex(ArrayList PC, int Index){ //Искать в списке Компьютер по номеру в списке
-        String result = (String) PC.get(Index); //Значение списка от индекса
-        System.out.println(result); //Отобразить выбранный компьютер
-        return result; //Вернуть искомый Компьютер
+
+    // поиск по номеру: проверяем, что номер существует
+    public static String ComputerSearchIndex(ArrayList<String> PC, int index) {
+        if (index < 0 || index >= PC.size()) {
+            System.out.println("Нет компьютера с номером " + index);
+            return null;
+        }
+        System.out.println("Компьютер №" + index + ": " + PC.get(index));
+        return PC.get(index);
     }
 }

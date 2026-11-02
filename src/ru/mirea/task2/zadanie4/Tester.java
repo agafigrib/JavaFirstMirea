@@ -1,19 +1,32 @@
 package ru.mirea.task2.zadanie4;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Tester {
     public static void main(String[] args) {
-        ArrayList computer = new ArrayList<String>(); //Список всех Компьютеров (БЕЗ НЕГО НИЧЕГО НЕ РАБОТАЕТ)
+        ArrayList<String> computers = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
 
-        Shop.Computers(computer); //Отображает все Компьютеры в списке
+        // по заданию данные вводятся с клавиатуры
+        System.out.print("Сколько компьютеров добавить: ");
+        int n = Integer.parseInt(sc.nextLine());
+        for (int i = 0; i < n; i++) {
+            System.out.print("Название компьютера: ");
+            Shop.ComputerAdd(computers, sc.nextLine());
+        }
 
-        Shop.ComputerAdd(computer, "New"); //Добавление Компьютера в список
+        System.out.println("Все компьютеры:");
+        Shop.Computers(computers);
 
-        Shop.ComputerDelete(computer, "New"); //Удаление Компьютера из списка
+        System.out.print("Какой компьютер найти: ");
+        Shop.ComputerSearchName(computers, sc.nextLine());
 
-        Shop.ComputerSearchName(computer, "New"); //Искать Компьютер по названию
+        System.out.print("Какой компьютер удалить: ");
+        Shop.ComputerDelete(computers, sc.nextLine());
 
-        Shop.ComputerSearchIndex(computer, 1); //Искать Компьютер по номеру в списке
+        System.out.println("После удаления:");
+        Shop.Computers(computers);
 
+        Shop.ComputerSearchIndex(computers, 0);
     }
 }

@@ -1,23 +1,22 @@
 package ru.mirea.task2.zadanie2;
-import java.lang.*;
 import java.util.Scanner;
 
 public class TestBall {
     public static void main(String[] args) {
-        double x;
-        double y;
-        double xDisp;
-        double yDisp;
-        Ball k1 = new Ball (0.0, 0.0);
-        System.out.println("Положение мяча: " + "\n x: " + k1.getX() + "\n y: " + k1.getY());
+        Ball ball = new Ball(0.0, 0.0);
+        System.out.println(ball);
 
         Scanner source = new Scanner(System.in);
-        System.out.println("Введите новый x: ");
-        xDisp = source.nextDouble();
-        k1.setX(xDisp);
-        System.out.println("Введите новый y: ");
-        yDisp = source.nextDouble();
-        k1.setY(yDisp);
-        System.out.println("Положение мяча: " + "\n x: " + k1.getX() + "\n y: " + k1.getY());
+        System.out.println("На сколько сдвинуть по x: ");
+        double xDisp = source.nextDouble();
+        System.out.println("На сколько сдвинуть по y: ");
+        double yDisp = source.nextDouble();
+
+        ball.move(xDisp, yDisp);          // сдвигаем
+        System.out.println("После move: " + ball);
+
+        ball.setXY(10, 20);               // ставим в точку (10, 20)
+        System.out.println("После setXY(10, 20): " + ball);
     }
 }
+
