@@ -105,6 +105,10 @@ public class DoublyLinkedList implements StudentList {
 
     // вывод в обратном порядке - возможность, которой нет у односвязного списка
     public void printReverse() {
+        if (isEmpty()) {
+            System.out.println("Список пуст");
+            return;
+        }
         Node current = tail;
         int number = size;
         while (current != null) {

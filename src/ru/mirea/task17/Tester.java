@@ -37,6 +37,7 @@ public class Tester {
             System.out.println("6 - проверить, пуст ли список");
             System.out.println("7 - записать список в файл");
             System.out.println("8 - прочитать список из файла");
+            System.out.println("9 - вывести список в обратном порядке (только двусвязный)");
             System.out.println("0 - выход");
             System.out.print("> ");
             String choice = sc.nextLine().trim();
@@ -81,6 +82,13 @@ public class Tester {
                         System.out.print("Имя файла: ");
                         list.loadFromFile(sc.nextLine().trim());
                         System.out.println("Загружено элементов: " + list.size());
+                        break;
+                    case "9":
+                        if (list instanceof DoublyLinkedList) {
+                            ((DoublyLinkedList) list).printReverse();
+                        } else {
+                            System.out.println("Обратный обход есть только у двусвязного списка");
+                        }
                         break;
                     case "0":
                         System.out.println("Выход");

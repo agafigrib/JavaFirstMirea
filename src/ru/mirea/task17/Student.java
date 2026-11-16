@@ -34,12 +34,24 @@ public class Student {
 
     // строка для записи в файл: поля через точку с запятой
     public String toFileLine() {
-        return name + ";" + age + ";" + group;
+        return clean(name) + ";" + age + ";" + clean(group);
+    }
+
+    // точка с запятой - разделитель полей в файле, поэтому внутри поля заменяем её на запятую
+    private static String clean(String value) {
+        return value.replace(';', ',');
     }
 
     // создать студента из строки файла
     public static Student fromFileLine(String line) {
         String[] parts = line.split(";");
-        return new Student(parts[0], Integer.parseInt(parts[1]), parts[2]);
+        if (parts.length != 3) {         // в строке должно быть ровно три поля
+            throw new IllegalArgumentException("неверная строка в файле: " + line);
+        }
+        try {
+            return new Student(parts[0], Integer.parseInt(parts[1].trim()), parts[2]);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("возраст не является числом в строке: " + line);
+        }
     }
 }
