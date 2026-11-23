@@ -12,7 +12,7 @@ public class zadanie1 {
 
         Date submittedAt = new Date();   // текущие дата и время сдачи
 
-        System.out.println("Разработчик: Иванов");   // впишите свою фамилию
+        System.out.println("Разработчик: Кузнецов");   // впишите свою фамилию
         System.out.println("Дата и время получения задания: " + receivedAt);
         System.out.println("Дата и время сдачи задания: " + format.format(submittedAt));
     }
